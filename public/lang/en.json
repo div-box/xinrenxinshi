@@ -1,0 +1,8 @@
+{
+  "login": {
+    "accountPlaceholder": "please input account",
+    "passwordPlaceholder": "please input password",
+    "MasterText": "Master"
+  },
+  "signInText": "welcome back!"
+}

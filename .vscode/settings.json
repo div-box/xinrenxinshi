@@ -1,0 +1,9 @@
+{
+  "i18n-ally.localesPaths": ["public/lang"],
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.sourceLanguage": "en", // 根据此语言文件翻译其他语言文件的变量和内容
+  "i18n-ally.displayLanguage": "zh-cn", // 显示语言
+  "i18n-ally.extract.keygenStrategy": "random", // 生成密钥路径的策略。可以slug，random或empty
+  "i18n-ally.extract.keygenStyle": "camelCase",
+  "typescript.tsdk": "node_modules/typescript/lib" // 翻译字段命名样式采用驼峰
+}

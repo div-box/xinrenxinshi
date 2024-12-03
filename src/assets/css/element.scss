@@ -1,0 +1,28 @@
+/* 只需要重写你需要的即可 */
+@forward "element-plus/theme-chalk/src/common/var.scss" with (
+  $colors: (
+    "primary": (
+      "base": #44b5c4,
+    ),
+    "success": (
+      "base": #44b5c4,
+    ),
+    "warning": (
+      "base": #e27d02,
+    ),
+    "danger": (
+      "base": #fb4a32,
+    ),
+    "error": (
+      "base": #ff5f5f,
+    ),
+    "info": (
+      "base": #65676f,
+    ),
+  ),
+  $button: (
+    "bg-color": var(--hc-global-bg-color),
+  )
+);
+@use "element-plus/theme-chalk/src/dark/css-vars.scss" as *;
+@use "element-plus/theme-chalk/src/index.scss" as *;

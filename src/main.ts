@@ -1,0 +1,16 @@
+import "./assets/css/reset.scss";
+import "./assets/css/iconfont.css";
+import "./assets/css/style.scss";
+import "./assets/css/mediaStyle.scss";
+import "./assets/css/hcStyle.scss";
+import "./assets/css/element.scss";
+import "./assets/css/theme.scss";
+import { createApp } from "vue";
+import pinia from "/@/stores/index";
+import App from "./App.vue";
+import router from "./router";
+import { directive } from "/@/directive/index";
+import ElementPlus from "element-plus";
+const app = createApp(App);
+directive(app);
+app.use(pinia).use(router).use(ElementPlus).use(i18n).mount("#app");

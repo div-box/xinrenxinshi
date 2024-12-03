@@ -1,0 +1,16 @@
+{
+  "main_lang": {
+    "lang_name": "中文",
+    "lang_file": "zh-CN.json"
+  },
+  "sub_lang": [
+    {
+      "lang_name": "英语",
+      "lang_file": "en.json"
+    },
+    {
+      "lang_name": "备注",
+      "lang_file": "remark.json"
+    }
+  ]
+}

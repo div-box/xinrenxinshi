@@ -1,0 +1,7 @@
+{
+  "productName": "behavior-tool",
+  "files": ["./electron/main.cjs", "./dist", "!node_modules"],
+  "directories": {
+    "output": "./buileder"
+  }
+}

@@ -1,0 +1,11 @@
+@media screen and (min-width: 1366px) {
+  body {
+    font-size: var(--hc-large-font-size);
+  }
+}
+
+@media screen and (max-width: 1366px) {
+  body {
+    font-size: var(--hc-mini-font-size);
+  }
+}

@@ -1,0 +1,76 @@
+:root {
+  // 背景
+  --hc-model-bg-color: #d3e6d0;
+  --hc-title-bg-color: rgba(238, 251, 247, 1);
+  --hc-global-bg-color: #fff;
+  --hc-border-color: #ccc;
+  --hc-th-bg-color: #eaeee9;
+  --hc-base-color: #44b5c4;
+
+  // 宽高
+  --hc-content-width: 100vw;
+  --hc-content-height: calc(100vh - 60px);
+  --hc-header-height: 60px;
+  --hc-menu-width: 0px;
+  // 字体
+  --hc-global-text-color: #333;
+  --hc-large-font-size: 20px;
+  --hc-normal-font-size: 16px;
+  --hc-small-font-size: 14px;
+  --hc-mini-font-size: 12px;
+  // 主题
+  --hc-primary: #44b5c4;
+  --hc-success: #009817;
+  --hc-warning: #e27d02;
+  --hc-danger: #fb4a32;
+  --hc-error: #ff5f5f;
+  --hc-info: #65676f;
+}
+// "primary": (
+//       "base": #347f64,
+//     ),
+//     "success": (
+//       "base": #009817,
+//     ),
+//     "warning": (
+//       "base": #e27d02,
+//     ),
+//     "danger": (
+//       "base": #fb4a32,
+//     ),
+//     "error": (
+//       "base": #ff5f5f,
+//     ),
+//     "info": (
+//       "base": #65676f,
+//     ),
+.hc-detail {
+  width: 100%;
+  display: flex;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  font-size: 14px;
+  :first-child {
+    margin-right: 10px;
+  }
+  :nth-child(2) {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: noWrap;
+  }
+}
+.hc-title {
+  padding: 10px 20px;
+  background: var(--hc-title-bg-color);
+  border-right: 1px solid var(--el-color-primary);
+}
+.m10_0 {
+  margin: 10px 0;
+}
+.lh1 {
+  line-height: 1;
+}
+.units {
+  font-size: 12px;
+}
