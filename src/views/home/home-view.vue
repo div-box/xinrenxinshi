@@ -1,5 +1,5 @@
 <template>
-  <div class="box">
+  <div class="box" @paste="handlePaste">
     <div class="content">
       <el-calendar ref="calendar">
         <template #header="{ date }">
@@ -47,6 +47,7 @@
                 style="width: 80%"
                 v-model="workDate[currTime][data.day].time"
                 is-range
+                @focus="handleFocus(data.day)"
               ></el-time-picker>
               <div style="margin-top: 4px" v-if="workDate[currTime][data.day].time?.length">
                 {{ (getMinute(workDate[currTime][data.day].time, data.day) / 60).toFixed(2) }}h
@@ -106,6 +107,7 @@ import { storeToRefs } from "pinia";
 import { handleImport } from "/@/utils/commonFunction";
 import type { CalendarDateType, CalendarInstance } from "element-plus";
 import logo from "/@/assets/img/homeLogo.png";
+import { ElMessage } from "element-plus";
 const optionsForm = ref({
   signin: "08:58",
   signout: "18:30",
@@ -127,10 +129,8 @@ const isWorkDay = (date: Date) => {
   const week = date.getDay();
   return week === 0 || week === 6 ? false : true;
 };
-
 const importData = async (file: any) => {
   const res = await handleImport(file);
-  console.log("res", res);
   const month = moment(res[0].date).format("YYYY-MM");
   res.forEach((item: any) => {
     const day = moment(item.date).format("YYYY-MM-DD");
@@ -257,6 +257,54 @@ const saveOptions = () => {
   options.value = optionsForm.value;
   appStore.setGlobalConfig({ options: { ...optionsForm.value } });
   dialogVisible.value = false;
+};
+const currentDay = ref();
+const handleFocus = (day: any) => {
+  console.log("day", day);
+  currentDay.value = day;
+};
+const handlePaste = async (event: ClipboardEvent) => {
+  event.preventDefault();
+  const clipboardData = event.clipboardData;
+  if (!clipboardData) return;
+
+  const text = clipboardData.getData("text");
+  console.log("text", text);
+
+  if (!text) return;
+
+  try {
+    // 尝试解析粘贴的文本内容
+    // 假设格式为: "09:00-18:00" 或 "09:00~18:00"
+    // const timeMatch = text.match(/(\d{1,2}:\d{2})\s*[-~]\s*(\d{1,2}:\d{2})/);
+    const [startTimeStr, endTime] = text.split("下班");
+    let startTime = "";
+    if (startTimeStr.indexOf("上班") !== -1) {
+      startTime = startTimeStr.split("上班")[1];
+    } else {
+      startTime = startTimeStr;
+    }
+    console.log("startTime", startTime);
+    console.log("endTime", endTime);
+    if (startTime && endTime) {
+      // 获取当前选中的日期
+
+      // 更新数据
+      if (!workDate.value[currTime.value][currentDay.value]) {
+        workDate.value[currTime.value][currentDay.value] = {
+          workDay: isWorkDay(new Date(currentDay.value)),
+          time: [],
+        };
+      }
+
+      workDate.value[currTime.value][currentDay.value].time = [startTime, endTime];
+    } else {
+      ElMessage.warning("无法识别的时间格式，请使用 HH:mm-HH:mm 格式");
+    }
+  } catch (error) {
+    console.error("解析剪切板内容失败:", error);
+    ElMessage.error("解析剪切板内容失败");
+  }
 };
 onMounted(() => {
   getWorkDate(currTime.value);
